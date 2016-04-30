@@ -73,8 +73,31 @@ function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
+    var playTo = 5;
+    var currWinner;
+    var currPlayerMove;
+    var currComputerMove;
+    var maxPlays = 500;
+    var numPlays = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     /* YOUR CODE HERE */
+    while (playerWins < playTo && computerWins < playTo) {
+        currPlayerMove = getPlayerMove();
+        if (currPlayerMove === 'exit') {
+            break;
+        }
+        currComputerMove = getComputerMove();
+        currWinner = getWinner(currPlayerMove, currComputerMove);
+        switch (currWinner) {
+            case 'computer': computerWins += 1; break;
+            case 'player' : playerWins += 1; break;
+        }
+        console.log("Current player move = " + currPlayerMove + ". Current ComputerMove = " + currComputerMove);
+        console.log("The score is currently " + playerWins + " to " + computerWins + '\n');
+        numPlays += 1;
+        if (numPlays > maxPlays) {
+            break;
+        }
+    }
     return [playerWins, computerWins];
 }
-
